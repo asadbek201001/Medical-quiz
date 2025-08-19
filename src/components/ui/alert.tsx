@@ -1,5 +1,4 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority@0.7.1";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "./utils";
 

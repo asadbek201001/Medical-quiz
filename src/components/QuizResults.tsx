@@ -1,9 +1,8 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Clock, RotateCcw, Home } from './Icons';
-import { formatTime, getScoreColor } from '../utils/quiz-helpers';
+import { getScoreColor } from '../utils/quiz-helpers';
 import type { SectionConfig } from '../data/quiz-sections';
 
 interface QuizResultsProps {

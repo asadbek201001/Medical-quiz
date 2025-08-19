@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
@@ -8,7 +8,6 @@ import { getQuestionsBySection, getSectionInfo } from '../data/questions';
 import { QuizState } from '../types/quiz';
 import { QuizResults } from './QuizResults';
 import { QUESTION_TIME_LIMIT, formatTime, getTimerColor } from '../utils/quiz-helpers';
-import type { Question } from '../types/quiz';
 
 interface QuizProps {
   sectionNumber: number;
