@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import { HomePage } from './components/HomePage';
 import { Quiz } from './components/Quiz';
 import { SectionSelection } from './components/SectionSelection';
+
+import { useState } from 'react';
 
 type AppState = 'home' | 'sectionSelection' | 'quiz';
 
