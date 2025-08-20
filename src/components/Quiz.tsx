@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
@@ -9,6 +9,11 @@ import { QuizState } from '../types/quiz';
 import { QuizResults } from './QuizResults';
 import { QUESTION_TIME_LIMIT, formatTime, getTimerColor } from '../utils/quiz-helpers';
 
+// Shuffle helper
+function shuffleArray<T>(array: T[]): T[] {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
 interface QuizProps {
   sectionNumber: number;
   onBackToHome: () => void;
@@ -16,7 +21,16 @@ interface QuizProps {
 
 export function Quiz({ sectionNumber, onBackToHome }: QuizProps) {
   const sectionInfo = getSectionInfo(sectionNumber);
-  const questions = getQuestionsBySection(sectionNumber);
+  const rawQuestions = getQuestionsBySection(sectionNumber);
+
+  // shuffle answers for each question (memoized)
+  const questions = useMemo(() => {
+    return rawQuestions.map(q => {
+      const options = shuffleArray(q.options);
+      const correctAnswerIndex = options.indexOf(q.options[q.correctAnswer]);
+      return { ...q, options, correctAnswer: correctAnswerIndex };
+    });
+  }, [sectionNumber]);
   
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
